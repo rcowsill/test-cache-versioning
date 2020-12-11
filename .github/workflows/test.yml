@@ -17,6 +17,7 @@ jobs:
   
   use-cache-v1:
     runs-on: ubuntu-latest
+    needs: make-cache-v1
 
     steps:
     - uses: actions/cache@v2
