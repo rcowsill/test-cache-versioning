@@ -1,0 +1,28 @@
+name: Test
+
+on: push
+
+jobs:
+  make-cache-v1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/cache@v2
+      with:
+        path: test.txt
+        key: test-file-cache-${{ github.sha }}
+
+    - run: |
+        echo "Test file version 1" >test.txt
+  
+  use-cache-v1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/cache@v2
+      with:
+        path: test.txt
+        key: test-file-cache-${{ github.sha }}
+
+    - run: |
+        cat test.txt
