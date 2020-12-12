@@ -14,10 +14,36 @@ jobs:
 
     - run: |
         echo "Test file version 1" >test.txt
-  
-  use-cache-v1:
+
+  make-cache-v2:
     runs-on: ubuntu-latest
     needs: make-cache-v1
+
+    steps:
+    - uses: actions/cache@v2
+      with:
+        path: test.txt
+        key: test-file-cache-2-${{ github.sha }}
+
+    - run: |
+        echo "Test file version 2" >test.txt
+
+  use-cache-v2:
+    runs-on: ubuntu-latest
+    needs: make-cache-v2
+
+    steps:
+    - uses: actions/cache@v2
+      with:
+        path: test.txt
+        key: test-file-cache-2-${{ github.sha }}
+
+    - run: |
+        cat test.txt
+
+  use-cache-v1:
+    runs-on: ubuntu-latest
+    needs: [make-cache-v1, use-cache-v2]
 
     steps:
     - uses: actions/cache@v2
