@@ -9,7 +9,9 @@ jobs:
     steps:
     - uses: actions/cache@v2
       with:
-        path: test.txt
+        path: |
+          cache-version-1
+          test.txt
         key: test-file-cache-${{ github.sha }}
 
     - run: |
@@ -22,8 +24,10 @@ jobs:
     steps:
     - uses: actions/cache@v2
       with:
-        path: test.txt
-        key: test-file-cache-2-${{ github.sha }}
+        path: |
+          cache-version-2
+          test.txt
+        key: test-file-cache-${{ github.sha }}
 
     - run: |
         echo "Test file version 2" >test.txt
@@ -35,8 +39,10 @@ jobs:
     steps:
     - uses: actions/cache@v2
       with:
-        path: test.txt
-        key: test-file-cache-2-${{ github.sha }}
+        path: |
+          cache-version-2
+          test.txt
+        key: test-file-cache-${{ github.sha }}
 
     - run: |
         cat test.txt
@@ -48,7 +54,9 @@ jobs:
     steps:
     - uses: actions/cache@v2
       with:
-        path: test.txt
+        path: |
+          cache-version-1
+          test.txt
         key: test-file-cache-${{ github.sha }}
 
     - run: |
